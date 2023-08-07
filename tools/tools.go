@@ -34,3 +34,28 @@ func Cosine(a []float64, b []float64) (cosine float64) {
 	}
 	return sumA / (math.Sqrt(s1) * math.Sqrt(s2))
 }
+
+func Euclidean(a []float64, b []float64) float64 {
+	count := 0
+	length_a := len(a)
+	length_b := len(b)
+	if length_a > length_b {
+		count = length_a
+	} else {
+		count = length_b
+	}
+	sumA := 0.0
+	for k := 0; k < count; k++ {
+		if k >= length_a {
+			sumA += math.Pow(b[k], 2)
+			continue
+		}
+		if k >= length_b {
+			sumA += math.Pow(a[k], 2)
+			continue
+		}
+		sumA += math.Pow(a[k]-b[k], 2)
+	}
+	sumA = math.Sqrt(sumA)
+	return sumA
+}
