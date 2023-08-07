@@ -1,7 +1,8 @@
 package main
 
-import "github.com/dadongc/aggregation/train"
+import "github.com/dadongc/aggregation/handler"
 
 func main() {
-	train.KNN()
+	//train.KNN()
+	handler.NewKMeansHandler().Handle()
 }

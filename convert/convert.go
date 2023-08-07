@@ -1,16 +1,17 @@
 package convert
 
 import (
-	"github.com/dadongc/aggregation/dto"
 	"image"
 	"image/color"
 	"image/png"
 	"os"
+
+	"github.com/dadongc/aggregation/dto"
 )
 
-func ConvertVector(labelFile, imageFile string, n int) []dto.ImageVector {
+func ConvertVector(labelFile, imageFile string, n int) []*dto.ImageVector {
 	result := parseImage(labelFile, imageFile, n)
-	vectors := make([]dto.ImageVector, 0)
+	vectors := make([]*dto.ImageVector, 0)
 	for _, r := range result {
 		vector := make([]float64, 0)
 		for _, b := range r.Image {
@@ -20,7 +21,7 @@ func ConvertVector(labelFile, imageFile string, n int) []dto.ImageVector {
 				vector = append(vector, 0)
 			}
 		}
-		vectors = append(vectors, dto.ImageVector{
+		vectors = append(vectors, &dto.ImageVector{
 			Image: vector,
 			Label: int(r.Label),
 		})
